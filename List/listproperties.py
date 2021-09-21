@@ -1,3 +1,5 @@
+# object retrive by index
+
 mylist = ['1', '2', '3', '4', '5']
 mylist1 = ['6', '7', '8', '9']
 
@@ -47,3 +49,22 @@ print(newlist)
 newlist.insert(0, 'u')
 print(newlist)
 #output : ['u', 'k', 't', 'o', 'd', 'c', 'b', 'a']
+
+# list comprehesive
+letter = 'hello'
+mylist = []
+for l in letter:
+    mylist.append(l)
+print(mylist)
+
+# shortform
+mylist2 = [l for l in letter]
+print(mylist2)
+
+# return squire
+mylist3 = [num**2 for num in range(0, 11)]
+print(mylist3)
+
+# condition : print only even number
+mylist4 = [num for num in range(0, 11) if num % 2 == 0]
+print(mylist4)
