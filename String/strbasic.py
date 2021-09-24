@@ -14,6 +14,8 @@ print(mystring[-1])
 
 # conver string to upper case
 print(mystring.upper())
+mystring.lower(
+)
 
 # Conver Sting to List
 print(mystring.split())
