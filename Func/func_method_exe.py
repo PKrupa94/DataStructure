@@ -111,3 +111,30 @@ def ispangram_other(str1, alphabet=string.ascii_lowercase):
 print('is pangram', ispangram("The quick Brown fox jumps over the lazy dog"))
 print('is pangram', ispangram_other(
     "The quick Brown fox jumps over the lazy dog"))
+
+
+def febonaci(num):
+    arr = []
+    for i in range(0, num):
+        if len(arr) == 0:
+            arr.append(0)
+        elif i == 1:
+            arr.append(1)
+        else:
+            arr.append(arr[i-2] + arr[i-1])
+    print(arr)
+
+
+febonaci(8)
+
+
+# find febonaci element at given index
+def febonaci_another(index):
+    current = 0
+    next = 1
+    for i in range(2, index):
+        current, next = next, current+next
+    return next
+
+
+print(febonaci_another(5))
