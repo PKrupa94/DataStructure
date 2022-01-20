@@ -15,7 +15,6 @@ class Solution:
         elif i == len(arr) or sum(slate) > target:
             return
         else:
-            pre = -1
             count = 0
             for j in range(i, len(arr)):
                 if arr[j] != arr[i]:
