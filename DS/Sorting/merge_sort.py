@@ -1,43 +1,48 @@
-# divide and conquer approach
-# divide the collection of elements into smaller subsets
-# recursively sort the subsets
-# combine or merge the result into solution
-#complexity : O(nlog(n))
+# Devide the collection of elements into smaller subsets
+# Recursively sort the subset
+# combine or merge the result in solution
+# devide and conquer approach
 
-
-def merge_sort(arr, leftIndex, rightIndex):
+def mergeSort(arr, leftIndex, rightIndex):
     if leftIndex < rightIndex:
-        middleIndex = (leftIndex + rightIndex) // 2
-        merge_sort(arr, leftIndex, middleIndex)  # left part
-        merge_sort(arr, middleIndex+1, rightIndex)  # right part
-        merge(arr, leftIndex, middleIndex, rightIndex)
+        midIndex = (leftIndex+rightIndex) // 2
+        mergeSort(arr, leftIndex, midIndex)
+        mergeSort(arr, midIndex+1, rightIndex)
+        merge(arr, leftIndex, midIndex, rightIndex)
     return arr
 
 
-def merge(arr, leftIndex, middleIndex, rightIndex):
-    i = leftIndex
-    j = middleIndex + 1
-    k = leftIndex
-    temparr = [0] * (rightIndex + 1)
-    while i <= middleIndex and j <= rightIndex:
+def merge(arr, leftIndex, midIndex, rightIndex):
+    print('arr', arr)
+    i = leftIndex  # use for one half of the arr
+    j = midIndex + 1  # use another half of the arr
+    k = leftIndex  # for temp arr(which use for merge element) index
+    tempArr = [0] * (rightIndex + 1)
+    while i <= midIndex and j <= rightIndex:
         if arr[i] < arr[j]:
-            temparr[k] = arr[i]
+            tempArr[k] = arr[i]
             i += 1
         else:
-            temparr[k] = arr[j]
+            tempArr[k] = arr[j]
             j += 1
         k += 1
-    while i <= middleIndex:
-        temparr[k] = arr[i]
+    # check any element left in left sub array
+    while i <= midIndex:
+        tempArr[k] = arr[i]
         i += 1
         k += 1
+    # check any element left in right sub array
     while j <= rightIndex:
-        temparr[k] = arr[j]
+        tempArr[k] = arr[j]
         j += 1
         k += 1
-    for i in range(leftIndex, rightIndex+1):
-        arr[i] = temparr[i]
+    print('tempArr', tempArr)
+    # move element from temp to actual arr
+    for m in range(leftIndex, rightIndex+1):
+        arr[m] = tempArr[m]
+    print('return arr', arr)
+    return arr
 
 
-arr = [3, 5, 8, 9, 6, 2]
-print('merge sort', merge_sort(arr, 0, len(arr)-1))
+a = [3, 5, 8, 7, 6, 9, 2]
+print('merge sort', mergeSort(a, 0, len(a)-1))

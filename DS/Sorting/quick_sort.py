@@ -1,32 +1,27 @@
-# divide and conquer approach
-# divide the list into subsets based on pivot element (it mean left side elements of pivot smaller than pivot and right side elements are greater than pivot )
-# recursively sort subset using quick sort
+def quickSort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quickSort(arr, low, pi-1)
+        quickSort(arr, pi+1, high)
 
 
-def getpartitionIndex(arr, lowIndex, highIndex):
-    pivot = arr[lowIndex]
-    i = lowIndex + 1
-    j = highIndex
+def partition(arr, low, high):
+    pivot = arr[low]
+    i = low + 1
+    j = high
     while True:
-        while i <= j and arr[i] < arr[pivot]:
-            i += 1
-        while i <= j and arr[j] > arr[pivot]:
-            j -= 1
+        while i <= j and arr[i] <= pivot:
+            i = i + 1
+        while i <= j and arr[j] > pivot:
+            j = j + 1
         if i <= j:
             arr[i], arr[j] = arr[j], arr[i]
         else:
             break
-    arr[lowIndex], arr[j] = arr[j], arr[lowIndex]
+    # swap value with pivot
+    arr[low], arr[j] = arr[j], arr[low]
     return j
 
 
-def quick_sort(arr, lowIndex, highIndex):
-    if lowIndex < highIndex:
-        partitionIndex = getpartitionIndex(arr, lowIndex, highIndex)
-        quick_sort(arr, lowIndex, partitionIndex-1)
-        quick_sort(arr, partitionIndex+1, highIndex)
-
-
-arr = [3, 5, 8, 9, 6, 2]
-quick_sort(arr, 0, len(arr)-1)
-print('quick sort', arr)
+a = [3, 5, 8, 7, 6, 9, 2]
+print('quick sort', quickSort(a, 0, len(a)-1))

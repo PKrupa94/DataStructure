@@ -1,15 +1,36 @@
-# match with each consucutive element and perform swipe
-# time complexity : worst case : O(n^2) and best casa when arr is alredy sorted then no need to perform any whipe so O(n)
-# after each iteration each part of right side of array will be sorted
+# compare the consecutive element
+# if left element is greater than the right element swap them
+# continue till the end of the collection and perform serveral passes to sort the elements
 
-def bubble_sort(arr):
-    for i in range(len(arr)-1, 0, -1):
-        for j in range(i):
-            if arr[j] > arr[j+1]:
-                arr[j+1], arr[j] = arr[j], arr[j+1]
+a = [3, 5, 8, 7, 6, 9, 2]
+
+
+def bubbleSort(arr):
+    arrLen = len(arr)
+    for passes in range(arrLen-1, 0, -1):
+        for index in range(passes):
+            if arr[index] > arr[index + 1]:
+                temp = arr[index + 1]
+                arr[index + 1] = arr[index]
+                arr[index] = temp
     return arr
 
 
-arr = [3, 5, 8, 9, 6, 2]
+print('Bubble sort', bubbleSort(a))
 
-print('bubble sort', bubble_sort(arr))
+
+def bubbleSortRecur(arr):
+    tempArr = []
+    if len(arr) <= 0:
+        return []
+    for index in range(len(arr)):
+        while arr[index] < arr[index - 1]:
+            temp = arr[index]
+            arr[index] = arr[index - 1]
+            arr[index - 1] = temp
+    tempArr = bubbleSortRecur(arr[:-1])
+    tempArr.append(arr[-1])
+    return tempArr
+
+
+print('Bubble Sort using recursion', bubbleSortRecur(a))
